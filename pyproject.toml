@@ -1,0 +1,23 @@
+[project]
+name = "hands-of-hope-be"
+version = "0.1.0"
+description = "Backend application for the Hands of hope project"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "django>=5.1.7",
+    "django-cors-headers>=4.7.0",
+    "djangorestframework>=3.16.0",
+    "djangorestframework-simplejwt>=5.5.0",
+    "djoser>=2.3.1",
+    "psycopg2-binary>=2.9.10",
+    "redis>=6.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "django-silk>=5.3.2",
+    "drf-spectacular>=0.28.0",
+    "nplusone>=1.0.0",
+    "pre-commit>=4.2.0",
+]
