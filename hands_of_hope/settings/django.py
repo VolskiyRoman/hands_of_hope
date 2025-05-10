@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "users",
     "safe_knowledge",
     "assistance",
+    "chatbot",
 ]
 
 MIDDLEWARE = [
