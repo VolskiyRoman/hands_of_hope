@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     "common",
     "health_check",
     "users",
-    "safe_knowledge"
+    "safe_knowledge",
+    "assistance",
 ]
 
 MIDDLEWARE = [

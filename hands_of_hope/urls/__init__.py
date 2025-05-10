@@ -6,6 +6,7 @@ urlpatterns = [
     path("", include("hands_of_hope.urls.swagger")),
     path("", include("hands_of_hope.urls.develop")),
     path("", include("safe_knowledge.urls")),
+    path("", include("assistance.urls")),
     path("api/health-check/", include("health_check.urls")),
     path("api/", include("djoser.urls")),
     path("api/", include("djoser.urls.jwt")),
