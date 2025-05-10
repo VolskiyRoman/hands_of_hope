@@ -30,7 +30,7 @@ FROM base
 COPY --from=builder /app /app
 
 WORKDIR /app
-ENV PATH="/app/venv/bin:$PATH"
+ENV PATH="/app/.venv/bin:$PATH"
 
 RUN chmod +x scripts/start.sh
 EXPOSE 8000 5555
