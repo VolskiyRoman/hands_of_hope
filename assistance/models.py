@@ -1,7 +1,13 @@
+from django.core.validators import MaxLengthValidator, RegexValidator
 from django.db import models
 from django.conf import settings
 from .enums import HelpTypeEnum, HelpStatusEnum
 
+
+phone_regex = RegexValidator(
+    regex=r'^\+?[1-9]\d{7,14}$',
+    message="Введіть правильний номер телефону у міжнародному форматі. Наприклад: +491234567890"
+)
 
 class HelpRequest(models.Model):
     user = models.ForeignKey(
@@ -13,9 +19,9 @@ class HelpRequest(models.Model):
         max_length=32,
         choices=[(tag.value, tag.name.replace('_', ' ').title()) for tag in HelpTypeEnum]
     )
-    description = models.TextField()
+    description = models.TextField(validators=[MaxLengthValidator(1500)])
     location = models.CharField(max_length=255)
-    contact_phone = models.CharField(max_length=50)
+    contact_phone = models.CharField(validators=[phone_regex], max_length=50)
     status = models.CharField(
         max_length=32,
         choices=[(tag.value, tag.name.replace('_', ' ').title()) for tag in HelpStatusEnum],

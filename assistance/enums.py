@@ -10,7 +10,6 @@ class HelpTypeEnum(str, Enum):
     CLOTHES = 'clothes'
     TRANSPORT = 'transport'
     INFO_SUPPORT = 'info_support'
-    LEGAL = 'legal'
     REPAIR = 'repair'
     VOLUNTEER = 'volunteer'
     OTHER = 'other'
