@@ -31,7 +31,9 @@ class MistralChatView(APIView):
                     {"role": "system", "content": prompt},
                     {"role": "user", "content": content},
                 ],
-                "temperature": 0.7,
+                "temperature": 0.3,
+                "top_p": 0.9,
+                "max_tokens": 512,
             }
 
             response = requests.post(url, headers=headers, json=data)
