@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import MistralChatView
+
+from chatbot.views import OpenAIChatView
 
 urlpatterns = [
-    path("api/chat/", MistralChatView.as_view(), name="mistral-chat"),
+    path("api/chat/", OpenAIChatView.as_view(), name="mistral-chat"),
 ]

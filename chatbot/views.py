@@ -7,29 +7,34 @@ from rest_framework import status
 from chatbot.prompts.prompt import MAIN_PROMPT
 
 
-class MistralChatView(APIView):
+class OpenAIChatView(APIView):
     def post(self, request):
-        prompt = MAIN_PROMPT
         content = request.data.get("content")
 
-        if not prompt or not content:
+        if not content:
             return Response(
-                {"error": "Both 'prompt' and 'content' fields are required."},
+                {"error": "'content' field is required."},
                 status=status.HTTP_400_BAD_REQUEST
             )
 
         try:
-            url = "https://api.mistral.ai/v1/chat/completions"
-            api_key = os.getenv("MISTRAL_API_KEY")
+            api_key = os.getenv("OPEN_AI_API_KEY")
+            if not api_key:
+                return Response(
+                    {"error": "OpenAI API key is not set."},
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR
+                )
+
+            url = "https://api.openai.com/v1/chat/completions"
             headers = {
                 "Authorization": f"Bearer {api_key}",
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
             }
             data = {
-                "model": "mistral-small",
+                "model": "gpt-3.5-turbo",
                 "messages": [
-                    {"role": "system", "content": prompt},
-                    {"role": "user", "content": content},
+                    {"role": "system", "content": MAIN_PROMPT},
+                    {"role": "user", "content": content}
                 ],
                 "temperature": 0.3,
                 "top_p": 0.9,
